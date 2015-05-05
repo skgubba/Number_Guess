@@ -1,0 +1,84 @@
+/**
+ * 
+ */
+package com.game;
+
+import java.util.Scanner;
+
+/**
+ * @author kishore
+ * 
+ */
+public class FindingNumberGame {
+
+	/**
+	 * minimum
+	 */
+	int minimum = 0;
+
+	/**
+	 * maximum
+	 */
+	int maximum = 100;
+
+	/**
+	 * numberOfAttemptsToFind
+	 */
+	static int numberOfAttemptsToFind = 0;
+
+	/**
+	 * Finds the number what the user is assuming
+	 */
+	public void findNumber() {
+
+		System.out.println("Assume a number in the Range of 0 and 100 :");
+		System.out
+				.println("User Input is retricted only to the words lower,higher,yes or end");
+		String searchNumberQuestion = null;
+		int rand = 0;
+		Scanner scan = null;
+
+		do {
+			rand = (minimum + maximum) / 2;
+			System.out.println("Is this the number you are assuming: " + rand
+					+ "\t");
+			scan = new Scanner(System.in);
+			searchNumberQuestion = scan.next();
+			numberOfAttemptsToFind++;
+			if (searchNumberQuestion.equals("higher")) {
+				minimum = rand;
+			} else if (searchNumberQuestion.equals("lower")) {
+				maximum = rand;
+			} else if (searchNumberQuestion.equals("yes")
+					|| searchNumberQuestion.equals("end")) {
+				System.out.println("The number is : " + rand);
+				System.out.println("Number found in " + numberOfAttemptsToFind
+						+ " attempts");
+				scan.close();
+				break;
+			} else {
+				System.out
+						.println("Please use only the words lower,higher,yes or end");
+				continue;
+			}
+
+		} while (!searchNumberQuestion.equals("Yes")
+				|| !searchNumberQuestion.equals("Y")
+				|| !searchNumberQuestion.equals("y")
+				|| !searchNumberQuestion.equals("end"));
+
+	}
+
+	/**
+	 * Main method to run the program
+	 * 
+	 * @param args
+	 */
+	public static void main(String args[]) {
+
+		FindingNumberGame fng = new FindingNumberGame();
+		fng.findNumber();
+
+	}
+
+}
